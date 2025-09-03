@@ -17,7 +17,7 @@ const Moon3D: React.FC = () => {
     sceneRef.current = scene;
 
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-    camera.position.z = 3.5;
+    camera.position.z = 5.5;
     cameraRef.current = camera;
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -32,16 +32,21 @@ const Moon3D: React.FC = () => {
     const textureLoader = new THREE.TextureLoader();
     // Use a high-res moon texture
     const texture = textureLoader.load('https://raw.githubusercontent.com/ajaytripathy/moon-texture/main/moonmap1k.jpg');
-    const material = new THREE.MeshStandardMaterial({ map: texture });
+    const material = new THREE.MeshStandardMaterial({
+      map: texture,
+      roughness: 0.7,
+      metalness: 0.0,
+      color: 0xffffff,
+    });
     const moon = new THREE.Mesh(geometry, material);
     scene.add(moon);
     moonRef.current = moon;
 
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
     scene.add(ambientLight);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(2, 2, 2);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
     // Animation loop
