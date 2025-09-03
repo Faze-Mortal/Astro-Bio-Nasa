@@ -10,14 +10,14 @@ const Moon3D: React.FC = () => {
   const moonRef = useRef<THREE.Mesh>();
 
   useEffect(() => {
-    const width = 160;
-    const height = 160;
+    const width = 600;
+    const height = 600;
     const scene = new THREE.Scene();
     scene.background = null;
     sceneRef.current = scene;
 
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-    camera.position.z = 2.5;
+    camera.position.z = 3.5;
     cameraRef.current = camera;
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -28,10 +28,10 @@ const Moon3D: React.FC = () => {
     }
 
     // Moon geometry and material
-    const geometry = new THREE.SphereGeometry(0.7, 64, 64);
+    const geometry = new THREE.SphereGeometry(1.5, 128, 128);
     const textureLoader = new THREE.TextureLoader();
-    // Use a public domain moon texture
-    const texture = textureLoader.load('https://threejs.org/examples/textures/moon.jpg');
+    // Use a high-res moon texture
+    const texture = textureLoader.load('https://raw.githubusercontent.com/ajaytripathy/moon-texture/main/moonmap1k.jpg');
     const material = new THREE.MeshStandardMaterial({ map: texture });
     const moon = new THREE.Mesh(geometry, material);
     scene.add(moon);
@@ -65,15 +65,15 @@ const Moon3D: React.FC = () => {
     <div
       ref={mountRef}
       style={{
-        position: 'absolute',
+        position: 'fixed',
         left: '50%',
         top: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 500,
-        height: 500,
+        width: 600,
+        height: 600,
         zIndex: 1,
         pointerEvents: 'none',
-        opacity: 0.7,
+        opacity: 0.85,
       }}
       aria-label="3D Moon"
     />
