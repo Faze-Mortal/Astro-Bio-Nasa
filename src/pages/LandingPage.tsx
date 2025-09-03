@@ -63,25 +63,14 @@ const LandingPage: React.FC = () => {
     <div className="relative min-h-screen flex items-center justify-center bg-black text-white overflow-hidden">
       {/* Dynamic Starfield */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" style={{display: 'block'}} />
-      {/* Animated Moon */}
-      <div ref={moonRef} className="absolute z-10" style={{width: 120, height: 120, left: 'calc(100% - 200px)', top: 80, pointerEvents: 'none'}}>
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-          <defs>
-            <radialGradient id="moonGlow" cx="60" cy="60" r="60" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
-              <stop offset="80%" stopColor="#fff" stopOpacity="0.1" />
-              <stop offset="100%" stopColor="#fff" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          <circle cx="60" cy="60" r="48" fill="#e0e0e0" />
-          <circle cx="60" cy="60" r="60" fill="url(#moonGlow)" />
-          {/* Craters */}
-          <circle cx="80" cy="70" r="7" fill="#bdbdbd" />
-          <circle cx="50" cy="40" r="4" fill="#bdbdbd" />
-          <circle cx="70" cy="50" r="3" fill="#bdbdbd" />
-          <circle cx="90" cy="50" r="2" fill="#bdbdbd" />
-        </svg>
-      </div>
+      {/* Animated Moon (Photorealistic PNG) */}
+      <img
+        ref={moonRef}
+        src="/moon.png"
+        alt="Moon"
+        className="absolute z-10 pointer-events-none"
+        style={{width: 120, height: 120, left: 'calc(100% - 200px)', top: 80}}
+      />
       {/* Content */}
       <div className="relative z-20 flex flex-col items-center justify-center min-h-screen text-center p-4">
         <header className="mb-8">
