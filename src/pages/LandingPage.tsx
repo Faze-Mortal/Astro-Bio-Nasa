@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Rocket, ArrowRight } from 'lucide-react';
+import Moon3D from '../components/Moon3D'; // Import the new Moon3D component
 
 // Helper to draw twinkling stars
 function drawStars(ctx, width, height, stars) {
@@ -64,13 +65,7 @@ const LandingPage: React.FC = () => {
       {/* Dynamic Starfield */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" style={{display: 'block'}} />
       {/* Animated Moon (Photorealistic PNG) */}
-      <img
-        ref={moonRef}
-        src="/moon.png"
-        alt="Moon"
-        className="absolute z-10 pointer-events-none"
-        style={{width: 120, height: 120, left: 'calc(100% - 200px)', top: 80}}
-      />
+      <Moon3D />
       {/* Content */}
       <div className="relative z-20 flex flex-col items-center justify-center min-h-screen text-center p-4">
         <header className="mb-8">
