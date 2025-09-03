@@ -64,7 +64,17 @@ const Moon3D: React.FC = () => {
   return (
     <div
       ref={mountRef}
-      style={{ position: 'absolute', right: 40, top: 40, width: 160, height: 160, zIndex: 10 }}
+      style={{
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 500,
+        height: 500,
+        zIndex: 1,
+        pointerEvents: 'none',
+        opacity: 0.7,
+      }}
       aria-label="3D Moon"
     />
   );

@@ -67,26 +67,18 @@ const LandingPage: React.FC = () => {
       {/* Animated Moon (Photorealistic PNG) */}
       <Moon3D />
       {/* Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen text-center p-4">
-        <header className="mb-8">
-          <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-600 animate-fade-in-down drop-shadow-[0_0_32px_rgba(80,200,255,0.3)]">
-            Astro BioSync
-          </h1>
-          <p className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto animate-fade-in-up backdrop-blur-sm">
-            The next generation dashboard for space bioscience. Explore, analyze, and visualize data from the frontiers of research.
-          </p>
-        </header>
-        <main className="animate-fade-in-up animation-delay-500">
-          <Link to="/dashboard">
-            <Button size="lg" className="group bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-700 text-white font-bold tracking-wide shadow-[0_0_32px_rgba(80,200,255,0.4)] px-8 py-4 rounded-full text-2xl flex items-center gap-3 transform hover:scale-105 transition-transform duration-300">
-              Enter Dashboard <Rocket className="h-7 w-7 group-hover:animate-bounce" /> <ArrowRight className="h-6 w-6" />
-            </Button>
-          </Link>
-        </main>
-        <footer className="absolute bottom-4 text-white/60 text-sm">
-          <p>&copy; {new Date().getFullYear()} Astro BioSync. All rights reserved.</p>
-        </footer>
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700 mb-4 drop-shadow-lg">Astro BioSync</h1>
+        <p className="text-xl text-gray-200 mb-8 text-center max-w-xl drop-shadow">The next generation dashboard for space bioscience. Explore, analyze, and visualize data from the frontiers of research.</p>
+        <Link to="/dashboard">
+          <Button className="text-lg px-8 py-4 font-bold shadow-xl" size="lg" variant="default">
+            Enter Dashboard <Rocket className="ml-2" /> <ArrowRight className="ml-2" />
+          </Button>
+        </Link>
       </div>
+      <footer className="absolute bottom-4 text-white/60 text-sm">
+        <p>&copy; {new Date().getFullYear()} Astro BioSync. All rights reserved.</p>
+      </footer>
       {/* CSS for animations */}
       <style>{`
         .group-hover\:animate-bounce:hover {
