@@ -30,8 +30,8 @@ const Moon3D: React.FC = () => {
     // Moon geometry and material
     const geometry = new THREE.SphereGeometry(1.5, 128, 128);
     const textureLoader = new THREE.TextureLoader();
-    // Use a high-res moon texture
-    const texture = textureLoader.load('https://raw.githubusercontent.com/ajaytripathy/moon-texture/main/moonmap1k.jpg');
+    // Use a high-res moon texture with craters
+    const texture = textureLoader.load('https://www.solarsystemscope.com/textures/download/2k_moon.jpg');
     const material = new THREE.MeshStandardMaterial({
       map: texture,
       roughness: 0.7,
@@ -43,9 +43,9 @@ const Moon3D: React.FC = () => {
     moonRef.current = moon;
 
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2.2);
     scene.add(ambientLight);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 4.5);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
