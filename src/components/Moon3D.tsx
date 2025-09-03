@@ -38,7 +38,7 @@ const Moon3D: React.FC = () => {
       const center = new THREE.Vector3();
       box.getCenter(center);
       moon.position.sub(center); // Center the model at (0,0,0)
-      moon.position.y -= 0.7; // Move moon slightly down
+      moon.position.y -= 1.2; // Move moon further down
       moon.scale.set(2, 2, 2);
       scene.add(moon);
     });
