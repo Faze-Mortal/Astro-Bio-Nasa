@@ -33,7 +33,11 @@ const Moon3D: React.FC = () => {
     loader.load('/moon.glb', (gltf) => {
       const moon = gltf.scene;
       moonRef.current = moon;
-      moon.position.set(0, 0, 0);
+      // Center the moon geometry
+      const box = new THREE.Box3().setFromObject(moon);
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+      moon.position.sub(center); // Center the model at (0,0,0)
       moon.scale.set(2, 2, 2);
       scene.add(moon);
     });
@@ -48,7 +52,7 @@ const Moon3D: React.FC = () => {
     // Animation loop
     const animate = () => {
       if (moonRef.current) {
-        moonRef.current.rotation.y += 0.002;
+        moonRef.current.rotation.y += 0.0007; // slower spin
       }
       renderer.render(scene, camera);
       requestRef.current = requestAnimationFrame(animate);
