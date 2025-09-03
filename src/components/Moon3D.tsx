@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
+import { GLTFLoader } from 'three-stdlib';
 
 const Moon3D: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -7,7 +8,7 @@ const Moon3D: React.FC = () => {
   const sceneRef = useRef<THREE.Scene>();
   const rendererRef = useRef<THREE.WebGLRenderer>();
   const cameraRef = useRef<THREE.PerspectiveCamera>();
-  const moonRef = useRef<THREE.Mesh>();
+  const moonRef = useRef<THREE.Group>();
 
   useEffect(() => {
     const width = 600;
@@ -27,20 +28,15 @@ const Moon3D: React.FC = () => {
       mountRef.current.appendChild(renderer.domElement);
     }
 
-    // Moon geometry and material
-    const geometry = new THREE.SphereGeometry(1.5, 128, 128);
-    const textureLoader = new THREE.TextureLoader();
-    // Use a high-res moon texture with craters
-    const texture = textureLoader.load('https://www.solarsystemscope.com/textures/download/2k_moon.jpg');
-    const material = new THREE.MeshStandardMaterial({
-      map: texture,
-      roughness: 0.7,
-      metalness: 0.0,
-      color: 0xffffff,
+    // Load moon.glb model
+    const loader = new GLTFLoader();
+    loader.load('/moon.glb', (gltf) => {
+      const moon = gltf.scene;
+      moonRef.current = moon;
+      moon.position.set(0, 0, 0);
+      moon.scale.set(2, 2, 2);
+      scene.add(moon);
     });
-    const moon = new THREE.Mesh(geometry, material);
-    scene.add(moon);
-    moonRef.current = moon;
 
     // Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 2.2);
@@ -52,7 +48,7 @@ const Moon3D: React.FC = () => {
     // Animation loop
     const animate = () => {
       if (moonRef.current) {
-        moonRef.current.rotation.y += 0.01;
+        moonRef.current.rotation.y += 0.002;
       }
       renderer.render(scene, camera);
       requestRef.current = requestAnimationFrame(animate);
@@ -61,7 +57,7 @@ const Moon3D: React.FC = () => {
 
     return () => {
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
-      if (mountRef.current) mountRef.current.removeChild(renderer.domElement);
+      if (mountRef.current && renderer.domElement.parentNode === mountRef.current) mountRef.current.removeChild(renderer.domElement);
       renderer.dispose();
     };
   }, []);
